@@ -2,7 +2,7 @@
 
 CryptoWatch App
 
-An application used to track crypto prices, built with React, JavaScript, and CSS.
+An application used to track crypto prices, built with React, JavaScript, and Chakra UI.
 
 ## Project Status
 
