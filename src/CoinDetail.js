@@ -62,26 +62,25 @@ function CoinDetail(props) {
   
     return (
       <Flex direction="column" align="center">
-        <Heading size="md" m={5}>
-          {coinInfo.id}
-        </Heading>
-        <Image src={coinInfo.logo_url} boxSize="200px" m={3} />
-        <Stat mb={10}>
-          <StatLabel>Price</StatLabel>
-          <StatNumber>{coinInfo.price} USD</StatNumber>
-        </Stat>
-        <LineChart
-          width={600}
-          height={300}
-          data={data2}
-          margin={{ top: 15, right: 20, bottom: 5, left: 0 }}
-        >
-          <Line type="monotone" dataKey="price" stroke="#8884d8" />
-
-          <XAxis dataKey="timestamp" />
-          <YAxis />
-          <Tooltip />
-        </LineChart>
+            <Heading size="md" m={5}>
+              {coinInfo.id}
+            </Heading>
+            <Image src={coinInfo.logo_url} boxSize="200px" m={3} />
+            <Stat mb={10}>
+              <StatLabel>Price</StatLabel>
+              <StatNumber>{coinInfo.price} USD</StatNumber>
+            </Stat>
+            <LineChart
+              width={600}
+              height={300}
+              data={data2}
+              margin={{ top: 15, right: 20, bottom: 5, left: 0 }}
+            >
+              <Line type="monotone" dataKey="price" stroke="#8884d8" />
+              <XAxis dataKey="timestamp" />
+              <YAxis />
+              <Tooltip />
+            </LineChart>
       </Flex>
     );
   

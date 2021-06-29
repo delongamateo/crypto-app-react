@@ -14,6 +14,7 @@ import CoinDetail from './CoinDetail';
 
 function App() {
   const [cryptoList, setCryptoList] = useState([]);
+  const [cardId, setCardId] = useState("")
 
 
   const apiKey = '66799bea7dbc2e733f42fa8d985abe1078869c66';
@@ -49,11 +50,7 @@ function App() {
                       <Heading size="md" m={5}>
                         Top trending:
                       </Heading>
-                      <Flex flexWrap="wrap">
-                        {cryptoList.map((crypto, i) => (
-                          <Card key={crypto.id} crypto={crypto} />
-                        ))}
-                      </Flex>
+                          <Card id={crypto.id} cryptoList={cryptoList} setCardId={setCardId}/>
                     </Flex>
                 </Route>
                 <Route
