@@ -15,6 +15,7 @@ import CoinDetail from './CoinDetail';
 function App() {
   const [cryptoList, setCryptoList] = useState([]);
 
+
   const apiKey = '66799bea7dbc2e733f42fa8d985abe1078869c66';
 
   async function fetchAll() {
@@ -32,39 +33,39 @@ function App() {
 
   console.log(cryptoList);
 
-  return (
-    <BrowserRouter>
-      <ChakraProvider theme={theme}>
-        <Navbar />
-        <Switch>
+  if (cryptoList === null) {
+    return 'Loading..';
+  } else {
+        return (
+          <BrowserRouter>
+            <ChakraProvider theme={theme}>
+              <Navbar />
+              <Switch>
 
-          <Route
-            exact
-            path="/"
-            component={() =>
-              <Flex flexWrap="wrap">
-                <Heading size="md" m={5}>
-                  Top trending:
-                </Heading>
-                <Flex flexWrap="wrap">
-                  {cryptoList.map((crypto, i) => (
-                    <Card key={i} crypto={crypto} />
-                  ))}
-                </Flex>
-              </Flex>
-            } 
-          />
-          <Route
-            path="/details"
-            component={() =>
-              <CoinDetail cryptoList={cryptoList} apiKey={apiKey} />
-            }
-          />
-          
-        </Switch>
-      </ChakraProvider>
-    </BrowserRouter>
-  );
+                <Route
+                  exact
+                  path="/">
+                    <Flex flexWrap="wrap">
+                      <Heading size="md" m={5}>
+                        Top trending:
+                      </Heading>
+                      <Flex flexWrap="wrap">
+                        {cryptoList.map((crypto, i) => (
+                          <Card key={crypto.id} crypto={crypto} />
+                        ))}
+                      </Flex>
+                    </Flex>
+                </Route>
+                <Route
+                  path="/details">
+                    <CoinDetail /*cryptoList={cryptoList}*/ apiKey={apiKey} />
+                </Route>
+                
+              </Switch>
+            </ChakraProvider>
+          </BrowserRouter>
+        );
+    }
 }
 
 export default App;

@@ -7,9 +7,12 @@ import {
   theme,
   Image,
   Heading,
+  boxShadow,
   Flex,
   Stat,
   StatLabel,
+  Skeleton,
+  loading,
   StatNumber
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
@@ -26,6 +29,7 @@ function Card(props) {
       borderRadius="lg"
       overflow="hidden"
       m={5}
+      ml={6}
       align="center"
     >
       <Image src={props.crypto.logo_url} boxSize="100px" m={3} />
