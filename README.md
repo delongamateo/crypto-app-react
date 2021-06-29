@@ -13,7 +13,7 @@ This project is currently in development. For now users can see list of top tren
 
 #### Example:   
 
-[ PRETEND SCREEN SHOT IS HERE ]
+![Screenshot](cryptowatchapp-snip.jpg)
 
 ## Installation and Setup Instructions
 
