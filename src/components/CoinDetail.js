@@ -16,27 +16,28 @@ import {
 import {useState, useEffect} from 'react'
 
 function CoinDetail(props) {
-  const [coin, setCoin] = useState([]);
+  const [coinData, setCoinData] = useState([]);
   const [coinInfo, setCoinInfo] = useState([]);
 
-  async function fetchAll() {
+  //testing data for chart
+  /* async function fetchAll() {
     const resp = await fetch(
       `https://api.nomics.com/v1/currencies/sparkline?key=${props.apiKey}&ids=BTC&start=2020-04-14T00%3A00%3A00Z&end=2021-05-14T00%3A00%3A00Z`
     );
     const data = await resp.json();
     console.log(data);
-    setCoin(data);
+    setCoinData(data);
   }
 
   useEffect(() => {
     fetchAll();
   }, []);
 
-  console.log(coin);
+  console.log(coinData); */
 
   async function fetchCoinDetail() {
     const resp = await fetch(
-      `https://api.nomics.com/v1/currencies/ticker?key=${props.apiKey}&ids=ETH`
+      `https://api.nomics.com/v1/currencies/ticker?key=${props.apiKey}&ids=${props.coin}`
     );
     const data = await resp.json();
     console.log(data);
@@ -44,8 +45,8 @@ function CoinDetail(props) {
   }
 
   useEffect(() => {
-    fetchCoinDetail();
-  }, []);
+    props.coin && fetchCoinDetail();
+  }, [props.coin]);
 
 
   
@@ -57,30 +58,33 @@ function CoinDetail(props) {
     { timestamp: '2020-07-27', price: 190.125 },
   ];
 
-  
-    return (
-      <Flex direction="column" align="center">
-            <Heading size="md" m={5}>
-              {coinInfo.id}
-            </Heading>
-            <Image src={coinInfo.logo_url} boxSize="200px" m={3} />
-            <Stat mb={10}>
-              <StatLabel>Price</StatLabel>
-              <StatNumber>{coinInfo.price} USD</StatNumber>
-            </Stat>
-            <LineChart
-              width={600}
-              height={300}
-              data={data2}
-              margin={{ top: 15, right: 20, bottom: 5, left: 0 }}
-            >
-              <Line type="monotone" dataKey="price" stroke="#8884d8" />
-              <XAxis dataKey="timestamp" />
-              <YAxis />
-              <Tooltip />
-            </LineChart>
-      </Flex>
-    );
+    if (props.coin === undefined || coinInfo === undefined) {
+      return 'Loading..';
+    } else {
+      return (
+        <Flex direction="column" align="center">
+          <Heading size="md" m={5}>
+            {coinInfo.id}
+          </Heading>
+          <Image src={coinInfo.logo_url} boxSize="200px" m={3} />
+          <Stat mb={10}>
+            <StatLabel>Price</StatLabel>
+            <StatNumber>{coinInfo.price} USD</StatNumber>
+          </Stat>
+          <LineChart
+            width={600}
+            height={300}
+            data={data2}
+            margin={{ top: 15, right: 20, bottom: 5, left: 0 }}
+          >
+            <Line type="monotone" dataKey="price" stroke="#8884d8" />
+            <XAxis dataKey="timestamp" />
+            <YAxis />
+            <Tooltip />
+          </LineChart>
+        </Flex>
+      );
+    }
   
 }
 

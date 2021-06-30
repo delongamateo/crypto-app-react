@@ -11,6 +11,7 @@ import CoinDetail from './components/CoinDetail';
 
 function App() {
   const [cryptoList, setCryptoList] = useState([]);
+  const [coin, setCoin] = useState("");
 
   const apiKey = '66799bea7dbc2e733f42fa8d985abe1078869c66';
 
@@ -28,6 +29,7 @@ function App() {
   }, []);
 
   console.log(cryptoList);
+  console.log(coin);
 
 
 
@@ -40,10 +42,10 @@ function App() {
             <Router>
               <Switch>
                 <Route exact path="/">
-                  <Card cryptoList={cryptoList} />
+                  <Card cryptoList={cryptoList} setCoin={setCoin}/>
                 </Route>
                 <Route path="/details">
-                  <CoinDetail apiKey={apiKey} />
+                  <CoinDetail apiKey={apiKey} coin={coin}/>
                 </Route>
               </Switch>
             </Router>

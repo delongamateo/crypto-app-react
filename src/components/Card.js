@@ -42,7 +42,7 @@ function Card(props) {
               </StatNumber>
             </Stat>
             <Box p={1} borderRadius="md" borderWidth="1px" mr={2}>
-              <Link to="/details">See Details</Link>
+              <Link to="/details" onClick={()=>{props.setCoin(crypto.name)}}>See Details</Link>
             </Box>
           </Flex>
         ))}
