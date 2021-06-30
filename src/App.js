@@ -1,27 +1,22 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import {
   ChakraProvider,
-  Heading,
   theme,
-  Flex
 } from '@chakra-ui/react';
-import { ColorModeSwitcher } from './ColorModeSwitcher';
-import Card from './Card';
-import Navbar from './Navbar';
-import CoinDetail from './CoinDetail';
+import Card from './components/Card';
+import Navbar from './components/Navbar';
+import CoinDetail from './components/CoinDetail';
 
 function App() {
   const [cryptoList, setCryptoList] = useState([]);
-  const [cardId, setCardId] = useState("")
-
 
   const apiKey = '66799bea7dbc2e733f42fa8d985abe1078869c66';
 
   async function fetchAll() {
     const resp = await fetch(
-      `https://api.nomics.com/v1/currencies/ticker?key=${apiKey}&convert=USD&per-page=9`
+      `https://api.nomics.com/v1/currencies/ticker?key=${apiKey}&convert=USD&per-page=12`
     );
     const data = await resp.json();
     
@@ -34,33 +29,25 @@ function App() {
 
   console.log(cryptoList);
 
+
+
   if (cryptoList === null) {
     return 'Loading..';
   } else {
         return (
-          <BrowserRouter>
-            <ChakraProvider theme={theme}>
-              <Navbar />
+          <ChakraProvider theme={theme}>
+            <Navbar />
+            <Router>
               <Switch>
-
-                <Route
-                  exact
-                  path="/">
-                    <Flex flexWrap="wrap">
-                      <Heading size="md" m={5}>
-                        Top trending:
-                      </Heading>
-                          <Card id={crypto.id} cryptoList={cryptoList} setCardId={setCardId}/>
-                    </Flex>
+                <Route exact path="/">
+                  <Card cryptoList={cryptoList} />
                 </Route>
-                <Route
-                  path="/details">
-                    <CoinDetail /*cryptoList={cryptoList}*/ apiKey={apiKey} />
+                <Route path="/details">
+                  <CoinDetail apiKey={apiKey} />
                 </Route>
-                
               </Switch>
-            </ChakraProvider>
-          </BrowserRouter>
+            </Router>
+          </ChakraProvider>
         );
     }
 }

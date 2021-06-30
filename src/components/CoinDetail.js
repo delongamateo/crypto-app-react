@@ -16,7 +16,6 @@ import {
 import {useState, useEffect} from 'react'
 
 function CoinDetail(props) {
-  //const { id, logo_url, price } = props.cryptoList[0];
   const [coin, setCoin] = useState([]);
   const [coinInfo, setCoinInfo] = useState([]);
 
@@ -49,9 +48,8 @@ function CoinDetail(props) {
   }, []);
 
 
-  // prices = ["123.234", "123.125", ...]
-  // timestamp = ["2020-04-20T00:00:00Z", "2020-04-27T00:00:00Z", ...]
-
+  
+// dummy data for chart
   const data2 = [
     { timestamp: '2020-04-20', price: 123.234 },
     { timestamp: '2020-05-27', price: 100.125 },
