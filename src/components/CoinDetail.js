@@ -45,7 +45,7 @@ function CoinDetail(props) {
   }
 
   useEffect(() => {
-    props.coin && fetchCoinDetail();
+    fetchCoinDetail();
   }, [props.coin]);
 
 
