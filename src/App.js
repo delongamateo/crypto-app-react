@@ -12,6 +12,7 @@ import CoinDetail from './components/CoinDetail';
 function App() {
   const [cryptoList, setCryptoList] = useState([]);
   const [coin, setCoin] = useState("");
+  console.log(coin)
 
   const apiKey = '66799bea7dbc2e733f42fa8d985abe1078869c66';
 
